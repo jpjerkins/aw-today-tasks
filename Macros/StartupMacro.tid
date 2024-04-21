@@ -1,0 +1,20 @@
+created: 20240421122715607
+creator: jpjerkins
+modified: 20240421122715607
+modifier: jpjerkins
+tags: $:/tags/StartupAction/PostRender
+title: $:/plugins/pjerkins/aw-today-tasks/Macros/StartupMacro
+
+<$reveal
+ state="$:/temp/TaskDoneActions!!today-actions-flag"
+ text="Parked Tasks Actions Added"
+ type=nomatch>
+    <$action-setfield
+    $tiddler="$:/temp/TaskDoneActions"
+    $field="text"
+    $value=`${[{$:/temp/TaskDoneActions!!text}]}$${[{$:/plugins/pjerkins/aw-today-tasks/Macros/TaskDoneMacro!!text}]}$` />
+    <$action-setfield
+    $tiddler="$:/temp/TaskDoneActions"
+    $field="today-actions-flag"
+    $value="Parked Tasks Actions Added" />
+</$reveal>
