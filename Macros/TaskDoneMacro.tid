@@ -1,0 +1,6 @@
+created: 20240421122715607
+modified: 20240421122715607
+tags: TaskDoneActions
+title: $:/plugins/pjerkins/aw-today-tasks/Macros/TaskDoneMacro
+
+<$action-listops $tiddler=<<doneTiddler>> $field="tags" $subfilter="PointsCounted" />
