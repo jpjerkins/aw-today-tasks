@@ -1,0 +1,19 @@
+created: 20240422002348220
+creator: jpjerkins
+modified: 20240422002348220
+creator: jpjerkins
+tags: TaskHeaderToolbarControl
+title: $:/plugins/pjerkins/aw-today-tasks/ViewTemplates/TaskTodayCandidateButtonTemplate
+
+<$list filter="[is[current]!tag[TodayCandidate]]">
+    <$button>
+        <$action-listops $tags="TodayCandidate" />
+        Today!
+    </$button>
+</$list>
+<$list filter="[is[current]tag[TodayCandidate]]">
+    <$button>
+        <$action-listops $tags="-TodayCandidate" />
+        !Today
+    </$button>
+</$list>
