@@ -3,8 +3,8 @@ modified: 20240421122715607
 tags: 
 title: $:/plugins/pjerkins/aw-today-tasks/Macros/TaskDoneMacro
 
-<$action-listops
- $tiddler=<<doneTiddler>>
- $field="tags"
- $subfilter="PointsCounted"
+<$action-setfield
+ $tiddler=<<targetTask>>
+ $field="today-actual-points"
+ $value=`${[<targetTask>get[today-potential-points]]}$`
 />

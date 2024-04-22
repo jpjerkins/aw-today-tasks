@@ -7,7 +7,7 @@ title: $:/plugins/pjerkins/aw-today-tasks/Macros/StartupMacro
 
 <$reveal
  state="$:/temp/TaskDoneActions!!today-actions-flag"
- text="Parked Tasks Actions Added"
+ text="Today Tasks Actions Added"
  type=nomatch>
     <$action-setfield
     $tiddler="$:/temp/TaskDoneActions"
@@ -16,5 +16,19 @@ title: $:/plugins/pjerkins/aw-today-tasks/Macros/StartupMacro
     <$action-setfield
     $tiddler="$:/temp/TaskDoneActions"
     $field="today-actions-flag"
-    $value="Parked Tasks Actions Added" />
+    $value="Today Tasks Actions Added" />
+</$reveal>
+
+<$reveal
+ state="$:/temp/TaskNotDoneActions!!today-actions-flag"
+ text="Today Tasks Actions Added"
+ type=nomatch>
+    <$action-setfield
+    $tiddler="$:/temp/TaskNotDoneActions"
+    $field="text"
+    $value=`${[{$:/temp/TaskNotDoneActions!!text}]}$${[{$:/plugins/pjerkins/aw-today-tasks/Macros/TaskNotDoneMacro!!text}]}$` />
+    <$action-setfield
+    $tiddler="$:/temp/TaskNotDoneActions"
+    $field="today-actions-flag"
+    $value="Today Tasks Actions Added" />
 </$reveal>

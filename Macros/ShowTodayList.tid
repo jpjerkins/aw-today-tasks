@@ -1,0 +1,31 @@
+created: 20240422002348220
+creator: jpjerkins
+modified: 20240422002348220
+modifier: jpjerkins
+tags: 
+title: $:/plugins/pjerkins/aw-today-tasks/Macros/ShowTodayList
+
+\define doneActions() <$action-setfield $field="today-actual-points" $value={{!!today-potential-points}} /><$action-listops $tags="Done"/>
+\define notDoneActions() <$action-deletefield $field="today-actual-points"/><$action-listops $tags="-Done"/>
+\define todayListFilter() [tag[Today]!nsort[today-potential-points]first[]]
+\define showTodayList(totalPotentialPoints, totalActualPoints, currentScore)
+
+<$list
+ filter=<<todayListFilter>>
+ emptyMessage="You haven't committed to any work yet Today!">
+
+    <$list filter="[tag[Today]!nsort[today-potential-points]]">
+        <$let targetTask=<<currentTiddler>> >
+            <$checkbox filter="[list[!!tags]]" checked="Done" checkactions=<<allTaskDoneActions>> uncheckactions=<<allTaskNotDoneActions>> >
+                {{!!today-potential-points}}
+                <$link tiddler=<<targetTask>> ><<targetTask>></$link>
+            </$checkbox><br/>
+        </$let>
+    </$list>
+
+    Possible: $totalPotentialPoints$<br/>
+    Actual: $totalActualPoints$<br/>
+    Score: <b>$currentScore$</b>
+
+</$list>
+\end

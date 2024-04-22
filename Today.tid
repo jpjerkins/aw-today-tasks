@@ -1,0 +1,135 @@
+caption: Today
+created: 20240422002348220
+creator: jpjerkins
+modified: 20240422002348220
+modifier: jpjerkins
+tags: 
+title: $:/plugins/pjerkins/aw-today-tasks/Today
+
+\define scoreTitle() $(today)$ - Daily Score
+\define weekTitle() $(year)$-w$(week)$ - Weekly Score
+\import [[$:/plugins/pjerkins/aw-basic-tasks/Macros/AllTaskDoneActionsMacro]]
+\import [[$:/plugins/pjerkins/aw-basic-tasks/Macros/AllTaskNotDoneActionsMacro]]
+\import [[$:/plugins/pjerkins/aw-today-tasks/Macros/ShowTodayList]]
+\define linkRow(startWithDelimiter)
+<$list filter="[tag[$:/plugins/pjerkins/aw-today-tasks/Today]first[1]]">
+    <$list filter="[[$startWithDelimiter$]match[yes]]"> | </$list>
+
+    <$link><$view field=caption>{{!!title}}</$view></$link>
+
+    <$list filter="[tag[$:/plugins/pjerkins/aw-today-tasks/Today]rest[1]]">
+        | <$link><$view field=caption>{{!!title}}</$view></$link>
+    </$list>
+</$list>
+\end
+
+<$let
+ totalPotentialPoints={{{ [tag[Today]get[today-potential-points]sum[]] }}}
+ totalActualPoints={{{ [tag[Today]get[today-actual-points]sum[]] }}}
+ currentScore={{{ [<totalActualPoints>divide<totalPotentialPoints>multiply[100]round[]] }}}
+ today=<<now "YYYY-0MM-0DD">>
+ year=<<now "YYYY">>
+ week=<<now "0WW">> >
+
+	<<showTodayList
+	 totalPotentialPoints:'<<totalPotentialPoints>>'
+	 totalActualPoints:'<<totalActualPoints>>'
+	 currentScore:'<<currentScore>>' >>
+
+	<$list filter=<<todayListFilter>> >
+		<p>
+			<$button>
+				<$wikify
+				name=wikitextraw
+				mode=inline
+				output=html
+				text=<<showTodayList totalPotentialPoints:'<<totalPotentialPoints>>' totalActualPoints:'<<totalActualPoints>>' currentScore:'<<currentScore>>' >> >
+					<$let wikitext={{{ [<wikitextraw>splitregexp[>\s+<]join[><]] }}} >
+					<$action-createtiddler
+						$basetitle=<<scoreTitle>>
+						$overwrite="yes"
+						tags="DailyScore"
+						text=<<wikitext>>
+						totalPotentialPoints=<<totalPotentialPoints>>
+						totalActualPoints=<<totalActualPoints>>
+						score=<<currentScore>>
+						weekOfYear=<<weekTitle>> />
+					</$let>
+				</$wikify>
+				&#9655; D
+			</$button>
+
+			<$button>
+				<$let
+				totalWeekPotentialPoints={{{ [tag[DailyScore]field:weekOfYear<weekTitle>get[totalPotentialPoints]sum[]] }}}
+				totalWeekActualPoints={{{ [tag[DailyScore]field:weekOfYear<weekTitle>get[totalActualPoints]sum[]] }}}
+				totalWeekScore={{{ [<totalWeekActualPoints>divide<totalWeekPotentialPoints>multiply[100]round[]] }}} >
+					<$action-createtiddler
+					$basetitle=<<weekTitle>>
+					$overwrite="yes"
+					tags="WeeklyScore"
+					totalPotentialPoints=<<totalWeekPotentialPoints>>
+					totalActualPoints=<<totalWeekActualPoints>>
+					totalScore=<<totalWeekScore>> />
+				</$let>
+				&#9655; W
+			</$button>
+			<$button>
+				<$list filter=`[tag[Today]!tag[TodayCandidate]${[{$:/temp/TaskFilter!!text}]}$sort[today-potential-points]]`>
+					<$action-listops $tiddler=<<currentTag>> $tags="TodayCandidate -Today" />
+					<$action-listops $tiddler=TodayCandidate $field=list $filter="[tag[TodayCandidate]!nsort[today-potential-points]]" />
+				</$list>
+				&#9661; R
+			</$button>
+			<$button>
+				<$list filter="[tag[Today]]">
+					<$action-listops $field="tags" $subfilter="-Today -FollowUpItem" />
+					<$action-deletefield $field="follow-up-folder" />
+				</$list>
+				Done!
+			</$button>
+		</p>
+	</$list>
+</$let>
+
+!! Candidates
+<$edit-text tiddler="$:/temp/new-today-candidate" tag="input" default="" />
+<$button>
+	<$list filter="[title[$:/temp/new-today-candidate]get[text]compare:string:ne[]]" variable=_>
+		<$action-createtiddler $basetitle={{$:/temp/new-today-candidate}} tags="Task"/>
+		<$action-deletetiddler $tiddler="$:/temp/new-today-candidate" />
+	</$list>
+	+
+</$button>
+<$button>
+	<$list filter="[title[$:/temp/new-today-candidate]get[text]compare:string:ne[]]" variable=_>
+		<$action-createtiddler $basetitle={{$:/temp/new-today-candidate}} tags="Task TodayCandidate"/>
+		<$action-deletetiddler $tiddler="$:/temp/new-today-candidate" />
+	</$list>
+	+C
+</$button>
+
+<$let todayCount={{{ [list[TodayCandidate!!list]count[]] }}}>
+    <table style="border: 0px; margin: 0px; padding: 0px;">
+	    <<list-tagged-draggable
+	     tag:"TodayCandidate"
+	     subFilter:"!has[draft.of]"
+	     itemTemplate:"$:/plugins/pjerkins/aw-today-tasks/ViewTemplates/TodayCardDraggableTemplate"
+	     emptyMessage:"You don't have any candidate tasks to commit">>
+    </table>
+
+	<$list filter=`[tag[TodayCandidate]${[{$:/temp/TaskFilter!!text}]}$first[]]`>
+		<$button>
+			<$list filter=`[list[TodayCandidate]${[{$:/temp/TaskFilter!!text}]}$]`>
+				<$let todayIndex={{{ [list[TodayCandidate]allbefore<currentTiddler>count[]] }}} todayPoints={{{ [<todayCount>subtract<todayIndex>] }}}>
+					<$action-listops $tags="Today -TodayCandidate" />
+					<$action-setfield today-potential-points=<<todayPoints>> />
+				</$let>
+			</$list>
+			<$action-setfield $tiddler="TodayCandidate" $field="list" $value="" />
+			&#9651; C
+		</$button>
+	</$list>
+</$let>
+
+[[Scores|$:/plugins/pjerkins/aw-today-tasks/TodayScores]] | [[Home]] <<linkRow yes>>
