@@ -4,6 +4,7 @@ modified: 20240422002348220
 creator: jpjerkins
 tags: TaskHeaderToolbarControl
 title: $:/plugins/pjerkins/aw-today-tasks/ViewTemplates/TaskTodayCandidateButtonTemplate
+list-after: $:/plugins/pjerkins/aw-basic-tasks/ViewTemplates/TaskDoneButtonTemplate
 
 <$list filter="[is[current]!tag[TodayCandidate]]">
     <$button>
