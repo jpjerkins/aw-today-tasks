@@ -5,8 +5,6 @@ modifier: jpjerkins
 tags: 
 title: $:/plugins/pjerkins/aw-today-tasks/Macros/ShowTodayList
 
-\define doneActions() <$action-setfield $field="today-actual-points" $value={{!!today-potential-points}} /><$action-listops $tags="Done"/>
-\define notDoneActions() <$action-deletefield $field="today-actual-points"/><$action-listops $tags="-Done"/>
 \define todayListFilter() [tag[Today]!nsort[today-potential-points]first[]]
 \define showTodayList(totalPotentialPoints, totalActualPoints, currentScore)
 
