@@ -8,8 +8,6 @@ title: $:/plugins/pjerkins/aw-today-tasks/Today
 
 \define scoreTitle() $(today)$ - Daily Score
 \define weekTitle() $(year)$-w$(week)$ - Weekly Score
-\import [[$:/plugins/pjerkins/aw-basic-tasks/Macros/AllTaskDoneActionsMacro]]
-\import [[$:/plugins/pjerkins/aw-basic-tasks/Macros/AllTaskNotDoneActionsMacro]]
 \import [[$:/plugins/pjerkins/aw-today-tasks/Macros/ShowTodayList]]
 \define linkRow(startWithDelimiter)
 <$list filter="[tag[$:/plugins/pjerkins/aw-today-tasks/Today]first[1]]">

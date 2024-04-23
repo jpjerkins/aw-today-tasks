@@ -14,10 +14,8 @@ title: $:/plugins/pjerkins/aw-today-tasks/Macros/ShowTodayList
 
     <$list filter="[tag[Today]!nsort[today-potential-points]]">
         <$let targetTask=<<currentTiddler>> >
-            <$checkbox filter="[list[!!tags]]" checked="Done" checkactions=<<allTaskDoneActions>> uncheckactions=<<allTaskNotDoneActions>> >
-                {{!!today-potential-points}}
-                <$link tiddler=<<targetTask>> ><<targetTask>></$link>
-            </$checkbox><br/>
+            {{!!today-potential-points}}
+            {{$:/plugins/pjerkins/aw-basic-tasks/ViewTemplates/TaskDoneCheckbox}}
         </$let>
     </$list>
 
