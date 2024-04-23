@@ -16,6 +16,7 @@ title: $:/plugins/pjerkins/aw-today-tasks/Macros/ShowTodayList
         <$let targetTask=<<currentTiddler>> >
             {{!!today-potential-points}}
             {{$:/plugins/pjerkins/aw-basic-tasks/ViewTemplates/TaskDoneCheckbox}}
+            <$link />
             <br/>
         </$let>
     </$list>
