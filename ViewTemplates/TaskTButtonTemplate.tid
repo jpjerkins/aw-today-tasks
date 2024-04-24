@@ -4,14 +4,18 @@ tags: TaskActionBarControl
 title: $:/plugins/pjerkins/aw-today-tasks/ViewTemplates/TaskTButtonTemplate
 list-after: $:/plugins/pjerkins/aw-basic-tasks/ViewTemplates/DeleteTaskButton
 
+\import [[$:/plugins/pjerkins/aw-basic-tasks/ViewTemplates/TaskActionBar3Dot]]
+
 <% if [is[current]!tag[TodayCandidate]!tag[Today]] %>
     <$button>
         <$action-listops $tiddler=<<currentTiddler>> $field="tags" $subfilter="+[append[TodayCandidate]]" />
+        <<closeActionBarActions>>
         T!
     </$button>
 <% else %>
     <$button>
         <$action-listops $tiddler=<<currentTiddler>> $field="tags" $subfilter="-TodayCandidate" />
         !T
+        <<closeActionBarActions>>
     </$button>
 <% endif %>
