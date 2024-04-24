@@ -2,7 +2,7 @@ created: 20240424124218435
 modified: 20240424124235539
 tags: TaskActionBarControl
 title: $:/plugins/pjerkins/aw-today-tasks/ViewTemplates/TaskTButtonTemplate
-list-after: $:/plugins/pjerkins/aw-basic-tasks/ViewTemplates/TaskDoneCheckButton
+list-after: $:/plugins/pjerkins/aw-basic-tasks/ViewTemplates/DeleteTaskButton
 
 <% if [is[current]!tag[TodayCandidate]!tag[Today]] %>
     <$button>
