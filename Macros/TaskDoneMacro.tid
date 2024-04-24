@@ -4,7 +4,5 @@ tags:
 title: $:/plugins/pjerkins/aw-today-tasks/Macros/TaskDoneMacro
 
 <$action-setfield
- $tiddler=<<targetTask>>
- $field="today-actual-points"
- $value=`${[<targetTask>get[today-potential-points]]}$`
+ today-actual-points=`${[<currentTiddler>get[today-potential-points]]}$`
 />

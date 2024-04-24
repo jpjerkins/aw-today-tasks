@@ -13,12 +13,10 @@ title: $:/plugins/pjerkins/aw-today-tasks/Macros/ShowTodayList
  emptyMessage="You haven't committed to any work yet Today!">
 
     <$list filter="[tag[Today]!nsort[today-potential-points]]">
-        <$let targetTask=<<currentTiddler>> >
-            {{!!today-potential-points}}
-            {{$:/plugins/pjerkins/aw-basic-tasks/ViewTemplates/TaskDoneCheckbox}}
-            <$link />
-            <br/>
-        </$let>
+        {{!!today-potential-points}}
+        {{||$:/plugins/pjerkins/aw-basic-tasks/ViewTemplates/TaskDoneCheckbox}}
+        <$link />
+        <br/>
     </$list>
 
     Possible: $totalPotentialPoints$<br/>
