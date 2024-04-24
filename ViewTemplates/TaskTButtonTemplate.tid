@@ -1,0 +1,17 @@
+created: 20240424124218435
+modified: 20240424124235539
+tags: TaskActionBarControl
+title: $:/plugins/pjerkins/aw-today-tasks/ViewTemplates/TaskTButtonTemplate
+list-after: $:/plugins/pjerkins/aw-basic-tasks/ViewTemplates/TaskDoneCheckButton
+
+<% if [is[current]!tag[TodayCandidate]!tag[Today]] %>
+    <$button>
+        <$action-listops $tiddler=<<currentTiddler>> $field="tags" $subfilter="+[append[TodayCandidate]]" />
+        T!
+    </$button>
+<% else %>
+    <$button>
+        <$action-listops $tiddler=<<currentTiddler>> $field="tags" $subfilter="-TodayCandidate" />
+        !T
+    </$button>
+<% endif %>
