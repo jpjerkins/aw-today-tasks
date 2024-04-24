@@ -10,23 +10,16 @@ title: $:/plugins/pjerkins/aw-today-tasks/ViewTemplates/TodayCardDraggableTempla
  todayOrdinal={{{ [<todayIndex>add[1]] }}}
  todayPoints={{{ [<todayCount>subtract<todayIndex>] }}}>
     <tr>
-        <td style="border: 0px; vertical-align: top; padding: 2px; margin: 0px;" width=25 align=center>
+        <td style="border: 0px; vertical-align: top; padding: 2px; margin: 0px;" width=50 align=center>
             <$link to={{!!title}}>
                 <<todayPoints>>
             </$link>
+            <$draggable tag="span" tiddler=<<currentTiddler>> >&#9776;</$draggable>
         </td>
-        <td style="border: 0px; vertical-align: top; padding: 2px; margin: 0px;">
-            <$button>
-                <$action-deletetiddler $tiddler={{!!title}} />
-                <$action-listops $tiddler="TodayCandidate" $filter="[tag[TodayCandidate]]"/>
-                &#x1f5d1;
-            </$button>
-            <$button>
-                <$action-listops $tags="-TodayCandidate"/>
-                <$action-listops $tiddler="TodayCandidate" $filter="[tag[TodayCandidate]]"/>
-                !T
-            </$button>
-            <$link tiddler=<<currentTiddler>> ><<currentTiddler>></$link>
+        <td style="border: 0px; vertical-align: top; padding: 2px; margin: 0px;">        
+            {{||$:/plugins/pjerkins/aw-basic-tasks/ViewTemplates/TaskActionBar3Dot}}
+            <$link />
+            {{||$:/plugins/pjerkins/aw-basic-tasks/ViewTemplates/TaskActionBar}}
         </td>
     </tr>
 </$let>
