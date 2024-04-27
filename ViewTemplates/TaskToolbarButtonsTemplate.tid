@@ -1,0 +1,34 @@
+created: 20240422002348220
+creator: jpjerkins
+modified: 20240422002348220
+modifier: jpjerkins
+tags: TaskHeaderToolbarControl
+title: $:/plugins/pjerkins/aw-today-tasks/ViewTemplates/TaskToolbarButtonsTemplate
+list-after: $:/plugins/pjerkins/aw-basic-tasks/ViewTemplates/TaskDoneButtonTemplate
+
+\import [[$:/plugins/pjerkins/aw-basic-tasks/ViewTemplates/TaskActionBar3Dot]]
+\import [[$:/plugins/pjerkins/aw-today-tasks/Macros/TodayCandateActions]]
+
+<% if [is[current]!tag[TodayCandidate]] %>
+    <$button>
+        <<makeTodayCandidateActions>>
+        Today!
+    </$button>
+<% else %>
+    <$button>
+        <<clearTodayCandidateActions>>
+        !Today
+    </$button>
+<% endif %>
+
+<% if [is[current]!tag[RepeatingTask]] %>
+    <$button>
+        <$action-listops $tags="RepeatingTask" />
+        Repeating!
+    </$button>
+<% else %>
+    <$button>
+        <$action-listops $tags="-RepeatingTask" />
+        !Repeating
+    </$button>
+<% endif %>

@@ -1,0 +1,32 @@
+created: 20240427001525350
+modified: 20240427001525350
+tags: 
+title: $:/plugins/pjerkins/aw-today-tasks/Macros/TodayCandateActions
+
+\define newDatedCandidateLabel() $(currentTiddler)$ $(newCandidateLabelDate)$
+\define newDatedCandidateTags() $(currentTags)$ Task TodayCandidate RepeatedTask
+\define makeTodayCandidateActions()
+    <% if [is[current]!tag[RepeatingTask]] %>
+        <$action-listops $tags="TodayCandidate" />
+    <% else %>
+        <$let currentTags={{!!tags}} parentTask={{!!title}} newCandidateLabelDate=<<now "YYYY-0MM-0DD" >> >
+            <$list filter="[enlist{!!repeating-tasks}]">
+                <$action-createtiddler
+                    $basetitle=<<newDatedCandidateLabel>>
+                    tags=<<newDatedCandidateTags>>
+                    parent-task=<<parentTask>> />
+                <$action-listops $tiddler=<<newDatedCandidateLabel>> $tags="-FollowUpItem -RepeatingTask" />
+            </$list>
+            <$list filter="[is[current]!has[repeating-tasks]]">
+                <$action-createtiddler
+                    $basetitle=<<newDatedCandidateLabel>>
+                    tags=<<newDatedCandidateTags>>
+                    parent-task=<<parentTask>>
+                    text={{!!text}} />
+                <$action-listops $tiddler=<<newDatedCandidateLabel>> $tags="-FollowUpItem" />
+            </$list>
+        </$let>
+    <% endif %>
+\end
+
+\define clearTodayCandidateActions() <$action-listops $tags="-TodayCandidate" />

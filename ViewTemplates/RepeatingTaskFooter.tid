@@ -1,0 +1,9 @@
+created: 20240427001525350
+modified: 20240427001525350
+title: $:/plugins/pjerkins/aw-today-tasks/ViewTemplates/RepeatingTaskFooter
+tags: $:/tags/ViewTemplate template
+list-after: $:/core/ui/ViewTemplate/body
+
+<% if [all[current]tag[RepeatingTask]] %>
+{{||$:/plugins/pjerkins/aw-today-tasks/ViewTemplates/RepeatingTaskListEditor}}
+<% endif %>

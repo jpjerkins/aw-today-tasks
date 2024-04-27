@@ -1,0 +1,28 @@
+created: 20240427001525350
+modified: 20240427001525350
+title: $:/plugins/pjerkins/aw-today-tasks/ViewTemplates/RepeatingTaskListEditor
+
+<$edit-text
+ field=new-repeating-task />
+<$button>
+	<$action-listops
+		$tiddler=<<currentTiddler>>
+		$field=repeating-tasks
+		$filter="[enlist{!!repeating-tasks}] [{!!new-repeating-task}]" />
+	<$action-deletefield
+		$field=new-repeating-task />
+	Add
+</$button>
+
+<$list filter="[enlist{!!repeating-tasks}]" variable=currentItem>
+	<div>
+		<$button>
+			<$action-listops
+				$tiddler=<<currentTiddler>>
+				$field=repeating-tasks
+				$filter="[enlist{!!repeating-tasks}] -[<currentItem>]" />
+			&#x1f5d1;
+		</$button>
+		<$text text=<<currentItem>> />
+	</div>
+</$list>

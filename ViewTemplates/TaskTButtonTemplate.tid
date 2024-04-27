@@ -5,16 +5,19 @@ title: $:/plugins/pjerkins/aw-today-tasks/ViewTemplates/TaskTButtonTemplate
 list-after: $:/plugins/pjerkins/aw-basic-tasks/ViewTemplates/DeleteTaskButton
 
 \import [[$:/plugins/pjerkins/aw-basic-tasks/ViewTemplates/TaskActionBar3Dot]]
+\import [[$:/plugins/pjerkins/aw-today-tasks/Macros/TodayCandateActions]]
 
 <% if [is[current]!tag[TodayCandidate]!tag[Today]] %>
     <$button>
-        <$action-listops $tiddler=<<currentTiddler>> $field="tags" $subfilter="+[append[TodayCandidate]]" />
-        <<closeActionBarActions>>
+        <$let currentTags={{!!tags}} parentTask={{!!title}} newCandidateLabelDate=<<now "YYYY-0MM-0DD" >> >
+            <<makeTodayCandidateActions>>
+            <<closeActionBarActions>>
+        </$let>
         T!
     </$button>
 <% else %>
     <$button>
-        <$action-listops $tiddler=<<currentTiddler>> $field="tags" $subfilter="-TodayCandidate" />
+        <<clearTodayCandidateActions>>
         !T
         <<closeActionBarActions>>
     </$button>
