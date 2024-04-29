@@ -32,3 +32,39 @@ title: $:/plugins/pjerkins/aw-today-tasks/Macros/StartupMacro
     $field="today-actions-flag"
     $value="Today Tasks Actions Added" />
 </$reveal>
+
+<$reveal
+ state="$:/temp/TaskFilter!!today-filter-flag"
+ text="Today Tasks Filter Added"
+ type=nomatch>
+    <$action-setfield
+    $tiddler="$:/temp/TaskFilter"
+    $field="text"
+    $value=`${[{$:/temp/TaskFilter!!text}]}$${[{$:/plugins/pjerkins/aw-today-tasks/Macros/NotTodayFilter!!text}]}$` />
+    <$action-setfield
+    $tiddler="$:/temp/TaskFilter"
+    $field="today-filter-flag"
+    $value="Today Tasks Filter Added" />
+</$reveal>
+
+<$reveal
+ state="$:/temp/TodayTasksOtherExclusionFilters!!today-filter-flag"
+ text="Today Tasks Other Exclusion Filters Added"
+ type=nomatch>
+    <$action-setfield
+    $tiddler="$:/temp/TodayTasksOtherExclusionFilters"
+    $field="text"
+    $value="" />
+    <$list filter="[all[shadows+tiddlers]tag[DefaultTaskExclusionFilter]!tag[TodayTasks]]" variable="currentExclusionFilterSource">
+        <$vars currentExclusionFilter={{{ [<currentExclusionFilterSource>get[text]] }}}>
+            <$action-setfield
+            $tiddler="$:/temp/TodayTasksOtherExclusionFilters"
+            $field="text"
+            $value=`${[{$:/temp/TodayTasksOtherExclusionFilters!!text}]}$$(currentExclusionFilter)$` />
+        </$vars>
+    </$list>
+    <$action-setfield
+    $tiddler="$:/temp/TodayTasksOtherExclusionFilters"
+    $field="today-filter-flag"
+    $value="Today Tasks Other Exclusion Filters Added" />
+</$reveal>
