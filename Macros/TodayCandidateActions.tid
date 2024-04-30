@@ -23,7 +23,7 @@ title: $:/plugins/pjerkins/aw-today-tasks/Macros/TodayCandateActions
                     tags=<<newDatedCandidateTags>>
                     parent-task=<<parentTask>>
                     text={{!!text}} />
-                <$action-listops $tiddler=<<newDatedCandidateLabel>> $tags="-FollowUpItem" />
+                <$action-listops $tiddler=<<newDatedCandidateLabel>> $tags="-FollowUpItem -RepeatingTask" />
             </$list>
         </$let>
     <% endif %>
