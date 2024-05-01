@@ -55,7 +55,7 @@ title: $:/plugins/pjerkins/aw-today-tasks/Macros/StartupMacro
     $tiddler="$:/temp/TodayTasksOtherExclusionFilters"
     $field="text"
     $value="" />
-    <$list filter="[all[shadows+tiddlers]tag[DefaultTaskExclusionFilter]!tag[TodayTasks]]" variable="currentExclusionFilterSource">
+    <$list filter="[all[shadows+tiddlers]tag[DefaultTaskExclusionFilter]!tag[TodayTasks]!tag[BasicTasks]]" variable="currentExclusionFilterSource">
         <$vars currentExclusionFilter={{{ [<currentExclusionFilterSource>get[text]] }}}>
             <$action-setfield
             $tiddler="$:/temp/TodayTasksOtherExclusionFilters"
