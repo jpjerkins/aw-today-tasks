@@ -1,12 +1,12 @@
 {
-    "created": "20240421122715607",
-    "title": "$:/plugins/pjerkins/aw-today-tasks",
-    "modified": "20240421122715607",
-    "core.version": ">=5.3.3",
-    "description": "ArchWork Basic Tasks plugin",
-    "plugin-type": "plugin",
-    "version": "0.0.07",
-    "name": "aw-today-tasks",
-    "dependents": "[[$:/plugins/pjerkins/aw-today-tasks]]",
-    "list": "readme"
+  "created": "20240421122715607",
+  "title": "$:/plugins/pjerkins/aw-today-tasks",
+  "modified": "20240421122715607",
+  "core.version": ">=5.3.3",
+  "description": "ArchWork Basic Tasks plugin",
+  "plugin-type": "plugin",
+  "version": "0.0.09",
+  "name": "aw-today-tasks",
+  "dependents": "[[$:/plugins/pjerkins/aw-today-tasks]]",
+  "list": "readme"
 }
