@@ -130,4 +130,4 @@ title: $:/plugins/pjerkins/aw-today-tasks/Today
 	</$list>
 </$let>
 
-[[Scores|$:/plugins/pjerkins/aw-today-tasks/TodayScores]] | [[Home]] <<linkRow yes>>
+[[Scores|$:/plugins/pjerkins/aw-today-tasks/TodayScores]] <<linkRow yes>>
