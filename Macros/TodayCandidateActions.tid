@@ -15,7 +15,7 @@ title: $:/plugins/pjerkins/aw-today-tasks/Macros/TodayCandateActions
                     $basetitle=<<newDatedCandidateLabel>>
                     tags=<<newDatedCandidateTags>>
                     parent-task=<<parentTask>> />
-                <$action-listops $tiddler=<<newDatedCandidateLabel>> $tags="-FollowUpItem -RepeatingTask" />
+                <$action-listops $tiddler=<<newDatedCandidateLabel>> $tags="-FollowUpItem -RepeatingTask -Focus" />
             </$list>
             <$list filter="[is[current]!has[repeating-tasks]]">
                 <$action-createtiddler
@@ -23,7 +23,7 @@ title: $:/plugins/pjerkins/aw-today-tasks/Macros/TodayCandateActions
                     tags=<<newDatedCandidateTags>>
                     parent-task=<<parentTask>>
                     text={{!!text}} />
-                <$action-listops $tiddler=<<newDatedCandidateLabel>> $tags="-FollowUpItem -RepeatingTask" />
+                <$action-listops $tiddler=<<newDatedCandidateLabel>> $tags="-FollowUpItem -RepeatingTask -Focus" />
             </$list>
         </$let>
     <% endif %>
