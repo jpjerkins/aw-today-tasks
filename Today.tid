@@ -73,7 +73,7 @@ title: $:/plugins/pjerkins/aw-today-tasks/Today
 				&#9655; W
 			</$button>
 			<$button>
-				<$list filter=`[tag[Today]!tag[TodayCandidate]${[{$:/temp/TodayTasksOtherExclusionFilters!!text}]}$sort[today-potential-points]]`>
+				<$list filter=`[tag[Today]!tag[TodayCandidate]!tag[Done]sort[today-potential-points]]`>
 					<$action-listops $tiddler=<<currentTag>> $tags="TodayCandidate -Today" />
 					<$action-listops $tiddler=TodayCandidate $field=list $filter="[tag[TodayCandidate]!nsort[today-potential-points]]" />
 				</$list>
@@ -116,9 +116,9 @@ title: $:/plugins/pjerkins/aw-today-tasks/Today
 	     emptyMessage:"You don't have any candidate tasks to commit">>
     </table>
 
-	<$list filter=`[tag[TodayCandidate]${[{$:/temp/TodayTasksOtherExclusionFilters!!text}]}$first[]]`>
+	<$list filter=`[tag[TodayCandidate]!tag[Done]first[]]`>
 		<$button>
-			<$list filter=`[list[TodayCandidate]${[{$:/temp/TodayTasksOtherExclusionFilters!!text}]}$]`>
+			<$list filter=`[list[TodayCandidate]!tag[Done]]`>
 				<$let todayIndex={{{ [list[TodayCandidate]allbefore<currentTiddler>count[]] }}} todayPoints={{{ [<todayCount>subtract<todayIndex>] }}}>
 					<$action-listops $tags="Today -TodayCandidate" />
 					<$action-setfield today-potential-points=<<todayPoints>> />
