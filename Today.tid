@@ -73,7 +73,7 @@ title: $:/plugins/pjerkins/aw-today-tasks/Today
 				&#9655; W
 			</$button>
 			<$button>
-				<$list filter=`[tag[Today]!tag[TodayCandidate]!tag[Done]sort[today-potential-points]]`>
+				<$list filter=`[tag[Today]!tag[TodayCandidate]sort[today-potential-points]]`>
 					<$action-listops $tiddler=<<currentTag>> $tags="TodayCandidate -Today" />
 					<$action-listops $tiddler=TodayCandidate $field=list $filter="[tag[TodayCandidate]!nsort[today-potential-points]]" />
 				</$list>
@@ -118,7 +118,7 @@ title: $:/plugins/pjerkins/aw-today-tasks/Today
 
 	<$list filter=`[tag[TodayCandidate]!tag[Done]first[]]`>
 		<$button>
-			<$list filter=`[list[TodayCandidate]!tag[Done]]`>
+			<$list filter=`[list[TodayCandidate]]`>
 				<$let todayIndex={{{ [list[TodayCandidate]allbefore<currentTiddler>count[]] }}} todayPoints={{{ [<todayCount>subtract<todayIndex>] }}}>
 					<$action-listops $tags="Today -TodayCandidate" />
 					<$action-setfield today-potential-points=<<todayPoints>> />
