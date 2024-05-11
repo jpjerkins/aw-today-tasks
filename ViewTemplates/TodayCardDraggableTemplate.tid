@@ -9,7 +9,6 @@ title: $:/plugins/pjerkins/aw-today-tasks/ViewTemplates/TodayCardDraggableTempla
 .draggable {
     -webkit-user-select: none;
     -webkit-touch-callout: none;
-    -webkit-user-drag: none;
 }
 </style>
 
