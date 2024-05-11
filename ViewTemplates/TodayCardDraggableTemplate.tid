@@ -5,13 +5,24 @@ modifier: jpjerkins
 tags: 
 title: $:/plugins/pjerkins/aw-today-tasks/ViewTemplates/TodayCardDraggableTemplate
 
+<style>
+.draggable {
+    -webkit-user-select: none;
+    -webkit-touch-callout: none;
+    -webkit-user-drag: none;
+}
+</style>
+
 <$let
  todayIndex={{{ [list[TodayCandidate]allbefore<currentTiddler>count[]] }}}
  todayOrdinal={{{ [<todayIndex>add[1]] }}}
  todayPoints={{{ [<todayCount>subtract<todayIndex>] }}}>
     <tr>
         <td style="border: 0px; vertical-align: top; padding: 2px; margin: 0px;" width=50 align=center>
-            <$draggable tag="span" tiddler=<<currentTiddler>> >
+            <$draggable
+            tag="span"
+            tiddler=<<currentTiddler>>
+            class="draggable" >
                 <<todayPoints>>
                 &#9776;
             </$draggable>
