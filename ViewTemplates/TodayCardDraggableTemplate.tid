@@ -17,7 +17,7 @@ title: $:/plugins/pjerkins/aw-today-tasks/ViewTemplates/TodayCardDraggableTempla
  todayOrdinal={{{ [<todayIndex>add[1]] }}}
  todayPoints={{{ [<todayCount>subtract<todayIndex>] }}}>
     <tr>
-        <td style="border: 0px; vertical-align: top; padding: 2px; margin: 0px;" width=50 align=center>
+        <td style="border: 0px; vertical-align: top; padding: 2px; margin: 0px;" width=50 align=right>
             <$transclude $tiddler="$:/plugins/pjerkins/aw-ui-controls/ViewTemplates/DragHandle">
                 <$fill $name=before><<todayPoints>></$fill>
             </$transclude>
