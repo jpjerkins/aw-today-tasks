@@ -18,13 +18,9 @@ title: $:/plugins/pjerkins/aw-today-tasks/ViewTemplates/TodayCardDraggableTempla
  todayPoints={{{ [<todayCount>subtract<todayIndex>] }}}>
     <tr>
         <td style="border: 0px; vertical-align: top; padding: 2px; margin: 0px;" width=50 align=center>
-            <$draggable
-            tag="span"
-            tiddler=<<currentTiddler>>
-            class="draggable" >
-                <<todayPoints>>
-                &#9776;
-            </$draggable>
+            <$transclude $tiddler="$:/plugins/pjerkins/aw-ui-controls/ViewTemplates/DragHandle">
+                <$fill $name=before><<todayPoints>></$fill>
+            </$transclude>
         </td>
         <td style="border: 0px; vertical-align: top; padding: 2px; margin: 0px;">        
             {{||$:/plugins/pjerkins/aw-basic-tasks/ViewTemplates/TaskActionBar3Dot}}
