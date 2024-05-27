@@ -4,12 +4,12 @@ tags:
 title: $:/plugins/pjerkins/aw-today-tasks/Macros/TodayCandateActions
 
 \define newDatedCandidateLabel() $(currentTiddler)$ $(newCandidateLabelDate)$
-\define newDatedCandidateTags() $(currentTags)$ Task TodayCandidate RepeatedTask
+\define newDatedCandidateTags() $(currentTags)$ [[$(currentTiddler)$]] Task TodayCandidate RepeatedTask
 \define makeTodayCandidateActions()
     <% if [is[current]!tag[RepeatingTask]] %>
         <$action-listops $tags="TodayCandidate" />
     <% else %>
-        <$let currentTags={{!!tags}} parentTask={{!!title}} newCandidateLabelDate=<<now "YYYY-0MM-0DD" >> >
+        <$let currentTags={{{ [{!!tags}!tag[Task]] }}}} parentTask={{!!title}} newCandidateLabelDate=<<now "YYYY-0MM-0DD" >> >
             <$list filter="[enlist{!!repeating-tasks}]">
                 <$action-createtiddler
                     $basetitle=<<newDatedCandidateLabel>>
