@@ -82,7 +82,7 @@ title: $:/plugins/pjerkins/aw-today-tasks/Today
 			<$button>
 				<$list filter="[tag[Today]tag[Done]]">
 					<$action-listops $field="tags" $subfilter="-Today -FollowUpItem" />
-					<$action-deletefield $field="follow-up-folder" />
+					<$action-deletefield $field="follow-up-date" />
 				</$list>
 				<$list filter="[tag[Today]!tag[Done]]">
 					<$action-listops $tags="-Today TodayCandidate" />
